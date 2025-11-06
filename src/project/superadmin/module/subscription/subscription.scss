@@ -1,0 +1,226 @@
+@use '../../../../styles/variables' as *;
+
+.subscription-module {
+    padding: 24px;
+
+    .module-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+
+        .mfh_title {
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+
+        .module-header-actions {
+            display: flex;
+            gap: 10px;
+        }
+    }
+}
+
+.subscription-list-container {
+    .subscription-table {
+        .ant-table {
+            background: transparent;
+            border-radius: $border-radius;
+        }
+
+        // Highlight rows based on subscription status
+        .subscription-row-expired {
+            background-color: rgba($text-error, 0.05);
+            &:hover > td {
+                background-color: rgba($text-error, 0.1) !important;
+            }
+        }
+
+        .subscription-row-expiring {
+            background-color: rgba($text-warning, 0.05);
+            &:hover > td {
+                background-color: rgba($text-warning, 0.1) !important;
+            }
+        }
+        
+        .subscription-row-deactivated {
+            background-color: rgba(#999999, 0.05);
+            opacity: 0.7;
+            &:hover > td {
+                background-color: rgba(#999999, 0.1) !important;
+            }
+        }
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 80px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+
+        &.active {
+            color: $text-success;
+            background: rgba($text-success, 0.1);
+            border-color: rgba($text-success, 0.2);
+        }
+
+        &.expired {
+            color: $text-error;
+            background: rgba($text-error, 0.1);
+            border-color: rgba($text-error, 0.2);
+        }
+        
+        &.deactivated {
+            color: #999999;
+            background: rgba(#999999, 0.1);
+            border-color: rgba(#999999, 0.2);
+        }
+    }
+
+    .bulk-actions {
+        margin-bottom: 16px;
+    }
+}
+
+.subscription-form {
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .ant-form-item {
+        margin-bottom: 16px;
+    }
+
+    .status-option {
+        &.trial {
+            color: $text-warning;
+            font-weight: 500;
+        }
+
+        &.paid {
+            color: $text-success;
+            font-weight: 500;
+        }
+    }
+
+    .ant-select-item-option-content {
+        .status-option {
+            margin: -4px -8px;
+        }
+    }
+
+    .subscription-status-toggle {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .status-switch {
+            min-width: 60px;
+            height: 24px !important;
+
+            &.trial {
+                background-color: #faad14;
+                
+                &.ant-switch-checked {
+                    background-color: #52c41a;
+                }
+            }
+
+            &.paid {
+                background-color: #52c41a;
+            }
+
+            .ant-switch-handle {
+                width: 20px;
+                height: 20px;
+            }
+
+            .ant-switch-inner {
+                font-size: 12px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+// Plan selection/display styles
+.plan-select-option {
+    display: flex;
+    flex-direction: column;
+
+    .plan-name {
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    .plan-meta {
+        display: flex;
+        gap: 8px;
+        font-size: 12px;
+
+        .plan-type {
+            &.trial {
+                color: $text-warning;
+            }
+
+            &.paid {
+                color: $text-success;
+            }
+        }
+    }
+}
+
+// Dark mode overrides
+.dark-mode {
+    .subscription-list-container {
+        .subscription-table {
+            .ant-table {
+                background: transparent;
+            }
+        }
+
+        .subscription-row-expired {
+            background-color: rgba($text-error, 0.1);
+            &:hover > td {
+                background-color: rgba($text-error, 0.15) !important;
+            }
+        }
+
+        .subscription-row-expiring {
+            background-color: rgba($text-warning, 0.1);
+            &:hover > td {
+                background-color: rgba($text-warning, 0.15) !important;
+            }
+        }
+
+        .status-badge {
+            &.active {
+                background: rgba(16, 185, 129, 0.15) !important;
+            }
+
+            &.expired {
+                background: rgba(239, 68, 68, 0.15) !important;
+            }
+        }
+    }
+
+    .subscription-form {
+        .status-option {
+            &.trial {
+                background: rgba(245, 158, 11, 0.15) !important;
+            }
+
+            &.paid {
+                background: rgba(16, 185, 129, 0.15) !important;
+            }
+        }
+    }
+} 

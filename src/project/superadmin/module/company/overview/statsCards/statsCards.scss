@@ -1,0 +1,159 @@
+@use '../../../../../../styles/_variables.scss' as *;
+
+.stats-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    padding: 24px 0;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    @media (max-width: 991px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    @media (max-width: 576px) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 16px 0;
+    }
+
+    .stats-card {
+        background: $bg-secondary;
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 28px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        border: 1px solid $border-light;
+        min-width: 0;
+        transition: $transition-default;
+        box-shadow: 0 4px 6px $shadow-color;
+
+        @media (max-width: 1200px) {
+            padding: 24px;
+        }
+
+        @media (max-width: 576px) {
+            padding: 20px;
+        }
+
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: $transition-default;
+
+            @media (max-width: 576px) {
+                width: 40px;
+                height: 40px;
+            }
+
+            &.blue {
+                background: rgba($text-blue, 0.15);
+                color: $text-blue;
+                box-shadow: 0 4px 12px rgba($text-blue, 0.15);
+                svg {
+                    background: $gradient-primary;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+
+            &.green {
+                background: rgba($text-success, 0.15);
+                color: $text-success;
+                box-shadow: 0 4px 12px rgba($text-success, 0.15);
+                svg {
+                    background: $gradient-primary;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+
+            &.orange {
+                background: rgba($text-warning, 0.15);
+                color: $text-warning;
+                box-shadow: 0 4px 12px rgba($text-warning, 0.15);
+                svg {
+                    background: $gradient-primary;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+
+        .content {
+            flex: 1;
+            min-width: 0;
+
+            .title {
+                font-size: 15px;
+                color: $text-secondary;
+                margin-bottom: 8px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+
+                @media (max-width: 1200px) {
+                    font-size: 14px;
+                }
+            }
+
+            .value {
+                font-size: 36px;
+                font-weight: 700;
+                color: $text-primary;
+                line-height: 1.2;
+                margin-bottom: 8px;
+                background: $gradient-primary;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+
+                @media (max-width: 1200px) {
+                    font-size: 32px;
+                }
+
+                @media (max-width: 576px) {
+                    font-size: 28px;
+                }
+            }
+
+            .sub-text {
+                font-size: 14px;
+                color: $text-secondary;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                opacity: 0.8;
+                font-weight: 500;
+
+                @media (max-width: 1200px) {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px $shadow-color;
+            border-color: $border-color;
+            
+            .icon-wrapper {
+                transform: scale(1.05);
+            }
+        }
+    }
+} 

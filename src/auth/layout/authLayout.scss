@@ -1,0 +1,366 @@
+@use '../../styles/_variables.scss' as *;
+
+.auth-layout {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: $bg-primary;
+
+    &-container {
+        background: $bg-secondary;
+        border-radius: $border-radius * 2;
+        padding: 40px;
+        width: 100%;
+        max-width: 440px;
+        box-shadow: 0 4px 30px $shadow-color;
+        border: 1px solid $border-light;
+        transition: $transition-default;
+
+        @media (max-width: 576px) {
+            padding: 24px;
+        }
+
+        &:hover {
+            box-shadow: 0 8px 40px $shadow-color;
+            transform: translateY(-2px);
+        }
+    }
+}
+
+// Auth Pages Common Styles
+.auth-page {
+    &-header {
+        text-align: center;
+        margin-bottom: 32px;
+
+        .ant-typography {
+            margin-bottom: 8px;
+            font-size: 24px;
+            color: $text-primary;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: $text-secondary;
+            font-size: 15px;
+            margin: 0;
+        }
+    }
+
+    &-back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: $primary-color;
+        margin-bottom: 32px;
+        font-size: 15px;
+        text-decoration: none;
+        transition: $transition-default;
+
+        &:hover {
+            color: $primary-hover;
+            transform: translateX(-4px);
+        }
+
+        svg {
+            font-size: 20px;
+        }
+    }
+
+    &-form {
+        .ant-form-item {
+            margin-bottom: 24px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .auth-button {
+            height: 48px;
+            border-radius: $border-radius;
+            font-size: 16px;
+            font-weight: 600;
+            background: $gradient-primary;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            transition: $transition-default;
+            box-shadow: 0 4px 15px $shadow-color;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px $shadow-color;
+            }
+
+            .button-content {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+
+                .icon {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .forgot-password-link {
+            color: $primary-color;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: $transition-default;
+
+            &:hover {
+                color: $primary-hover;
+            }
+        }
+    }
+}
+
+// Input Wrapper Styles
+.input-wrapper {
+    position: relative;
+    margin-bottom: 24px;
+
+    &-label {
+        position: absolute;
+        top: -10px;
+        left: 12px;
+        padding: 0 8px;
+        background-color: $bg-secondary;
+        color: $primary-color;
+        font-size: 13px;
+        font-weight: 500;
+        z-index: 2;
+        transition: $transition-default;
+    }
+
+    .ant-input,
+    .ant-input-password {
+        background: $bg-primary;
+        border: 1.5px solid rgba($primary-color, 0.2);
+        border-radius: $border-radius;
+        padding: 0 16px;
+        height: 48px;
+        color: $text-primary;
+        transition: $transition-default;
+        font-size: 15px;
+
+        &:hover,
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 2px $primary-light;
+            background: rgba($primary-color, 0.02);
+        }
+
+        &::placeholder {
+            color: $text-secondary;
+        }
+
+        .anticon {
+            color: $primary-color;
+            font-size: 20px;
+        }
+    }
+
+    .ant-input-prefix {
+        margin-right: 12px;
+
+        svg {
+            color: $primary-color;
+            font-size: 20px;
+        }
+    }
+
+    .ant-input-password {
+        .ant-input {
+            height: 46px;
+            border: none;
+            padding: 0;
+            background: transparent;
+
+            &:hover,
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .ant-input-suffix {
+            margin-left: 12px;
+
+            svg {
+                color: $primary-color;
+                font-size: 20px;
+            }
+
+            &:hover {
+                color: $primary-hover;
+            }
+        }
+    }
+
+    &.has-error {
+        .ant-input,
+        .ant-input-password {
+            border-color: $text-error;
+            
+            &:hover,
+            &:focus {
+                border-color: $text-error;
+                box-shadow: 0 0 0 2px rgba($text-error, 0.1);
+            }
+        }
+
+        .input-wrapper-label {
+            color: $text-error;
+        }
+
+        .ant-input-prefix svg,
+        .ant-input-suffix svg {
+            color: $text-error;
+        }
+    }
+}
+
+// OTP Input Styles
+.otp-input-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 32px 0;
+
+    .otp-input {
+        width: 50px !important;
+        height: 50px !important;
+        border-radius: $border-radius;
+        border: 1.5px solid rgba($primary-color, 0.2);
+        font-size: 20px;
+        font-weight: 600;
+        color: $text-primary;
+        text-align: center;
+        transition: $transition-default;
+        background: rgba($primary-color, 0.02);
+
+        &:hover,
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 2px $primary-light;
+        }
+
+        &.error {
+            border-color: $text-error;
+            
+            &:hover,
+            &:focus {
+                border-color: $text-error;
+                box-shadow: 0 0 0 2px rgba($text-error, 0.1);
+            }
+        }
+    }
+}
+
+// Info Box Styles
+.info-box {
+    margin-top: 32px;
+    padding: 16px;
+    background: rgba($primary-color, 0.05);
+    border-radius: $border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    svg {
+        color: $primary-color;
+        font-size: 20px;
+    }
+
+    .text {
+        color: $text-secondary;
+        font-size: 14px;
+        margin: 0;
+    }
+}
+
+// Timer Styles
+.resend-timer {
+    text-align: center;
+    margin-top: 24px;
+    color: $text-secondary;
+    font-size: 14px;
+
+    .timer {
+        color: $primary-color;
+        font-weight: 500;
+        margin-left: 4px;
+    }
+
+    .resend-link {
+        color: $primary-color;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: $transition-default;
+
+        &:hover {
+            color: $primary-hover;
+        }
+
+        &.disabled {
+            color: $text-secondary;
+            cursor: not-allowed;
+        }
+    }
+}
+
+// Dark mode overrides
+.dark-mode {
+    .auth-layout {
+        background: $bg-dark;
+
+        &-container {
+            background: $bg-secondary;
+            border-color: $border-color;
+        }
+    }
+
+    .auth-page {
+        &-header {
+            .ant-typography {
+                color: $text-white;
+            }
+        }
+    }
+
+    .input-wrapper {
+        &-label {
+            background-color: $bg-secondary;
+        }
+
+        .ant-input,
+        .ant-input-password {
+            background: rgba($primary-color, 0.02);
+            border-color: rgba($primary-color, 0.2);
+            color: $text-white;
+
+            &::placeholder {
+                color: $text-secondary;
+            }
+        }
+    }
+
+    .otp-input-group {
+        .otp-input {
+            background: rgba($primary-color, 0.02);
+            color: $text-white;
+        }
+    }
+
+    .info-box {
+        background: rgba($primary-color, 0.1);
+    }
+}

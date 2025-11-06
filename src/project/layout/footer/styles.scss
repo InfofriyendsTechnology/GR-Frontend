@@ -1,0 +1,53 @@
+@use '../../../styles/variables' as *;
+
+.dashboard-footer {
+  text-align: center;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  padding: 16px 24px;
+  width: 100%;
+  border-top: 1px solid $border-color;
+
+  &-content {
+    @include flex-between;
+  }
+
+  &-copyright {
+    color: var(--text-secondary);
+  }
+  &-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    .ant-typography {
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: $gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+
+  &-social {
+    display: flex;
+    gap: 12px;
+
+    .ant-typography {
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: $gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .anticon {
+        font-size: 16px;
+      }
+    }
+  }
+}

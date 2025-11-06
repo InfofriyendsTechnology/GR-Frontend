@@ -1,0 +1,185 @@
+@use './_variables.scss' as *;
+
+// Base button styles
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    height: 38px;
+    min-width: 38px;
+    letter-spacing: 0.02em;
+
+    .anticon {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+    // Size variants
+    &-sm {
+        height: 32px;
+        padding: 6px 16px;
+        font-size: 13px;
+        border-radius: 6px;
+
+        .anticon {
+            font-size: 14px;
+        }
+    }
+
+    &-lg {
+        height: 44px;
+        padding: 10px 24px;
+        font-size: 15px;
+        border-radius: 10px;
+
+        .anticon {
+            font-size: 18px;
+        }
+    }
+
+    // Style variants
+    &-primary {
+        background: $primary-color;
+        color: $text-white;
+        border-color: $primary-color;
+
+        &:hover {
+            background: $primary-hover;
+            border-color: $primary-hover;
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &-secondary {
+        background: rgba($primary-color, 0.1);
+        color: $primary-color;
+        border-color: transparent;
+
+        &:hover {
+            background: rgba($primary-color, 0.15);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &-outline {
+        background: transparent;
+        border-color: $border-color;
+        color: $text-primary;
+
+        &:hover {
+            border-color: $primary-color;
+            color: $primary-color;
+            transform: translateY(-1px);
+            background: transparent;
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &-ghost {
+        background: transparent;
+        color: $text-primary;
+
+        &:hover {
+            background: rgba($color: #000000, $alpha: 0.04);
+            color: $primary-color;
+        }
+    }
+
+    &-danger {
+        background: $text-error;
+        color: $text-white;
+        border-color: $text-error;
+
+        &:hover {
+            background: rgba($color: #ef4444, $alpha: 0.9);
+            border-color: rgba($color: #ef4444, $alpha: 0.9);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &-success {
+        background: $text-success;
+        color: $text-white;
+        border-color: $text-success;
+
+        &:hover {
+            background: rgba($color: #22c55e, $alpha: 0.9);
+            border-color: rgba($color: #22c55e, $alpha: 0.9);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    // Icon only button
+    &-icon {
+        padding: 0;
+        width: 38px;
+        min-width: 38px;
+
+        &.btn-sm {
+            width: 32px;
+            min-width: 32px;
+        }
+
+        &.btn-lg {
+            width: 44px;
+            min-width: 44px;
+        }
+    }
+
+    // Loading state
+    &-loading {
+        position: relative;
+        pointer-events: none;
+        opacity: 0.8;
+
+        .anticon-loading {
+            margin-right: 8px;
+            animation: rotate 1s linear infinite;
+        }
+    }
+
+    // Disabled state
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}
+
+// Animation keyframes
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

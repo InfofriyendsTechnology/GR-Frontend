@@ -1,0 +1,21 @@
+@use '../../../../../../styles/_variables.scss' as *;
+
+.review-list-container {
+    .reviews-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+
+        .mfh_title {
+            margin-bottom: 0;
+        }
+
+    }
+
+    .review-tabs {
+        .ant-tabs-content {
+           color: $primary-color ;
+        }
+    }
+}

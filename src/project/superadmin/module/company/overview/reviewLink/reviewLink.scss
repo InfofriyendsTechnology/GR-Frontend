@@ -1,0 +1,50 @@
+@use '../../../../../../styles/_variables.scss' as *;
+
+.link-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.google-review-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    
+    .link-text-container {
+        max-width: 500px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        
+        a {
+            color: $primary-color;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+    }
+    
+    .edit-link-button {
+        color: $primary-color;
+        padding: 0;
+        margin-left: 8px;
+        
+        &:hover {
+            color: $primary-color;
+            opacity: 0.8;
+        }
+    }
+}
+
+.add-link-button {
+    font-size: 12px;
+    padding: 0;
+    height: 22px;
+    color: $primary-color;
+    border: none;
+    
+    &:hover {
+        color: $primary-color;
+        opacity: 0.8;
+    }
+} 

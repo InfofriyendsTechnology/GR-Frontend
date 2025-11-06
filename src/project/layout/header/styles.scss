@@ -1,0 +1,164 @@
+@use '../../../styles/variables' as *;
+
+.dashboard-header {
+    position: fixed;
+    z-index: 99;
+    height: $header-height;
+    padding: 0 24px;
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    box-shadow: 0 1px 4px var(--shadow-color);
+    @include flex-between;
+    right: 0;
+    top: 0;
+    will-change: width;
+
+    &-toggle {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        @include flex-center;
+        color: var(--text-primary);
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: linear-gradient(45deg, var(--primary-light) 0%, transparent 100%);
+            color: var(--primary-color);
+        }
+
+        .toggle-icon {
+            font-size: 20px;
+        }
+    }
+
+    &-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    &-notification {
+        padding: 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        @include flex-center;
+
+        &:hover {
+            background: linear-gradient(45deg, var(--primary-light) 0%, transparent 100%);
+
+            .notification-icon {
+                background: $gradient-primary;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        .notification-icon {
+            font-size: 20px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .ant-badge {
+            .ant-badge-count {
+                background: $gradient-error;
+                box-shadow: 0 4px 12px var(--shadow-color);
+                padding: 0 6px;
+                font-size: 12px;
+                font-weight: 600;
+                min-width: 20px;
+                height: 20px;
+                line-height: 20px;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    // Custom styles for notification dropdown
+    .notification-dropdown {
+        .ant-dropdown-menu {
+            &::before {
+                content: 'Notifications';
+                display: block;
+                padding: 20px;
+                font-weight: 600;
+                background: $gradient-primary;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 16px;
+                border-bottom: 1px solid var(--border-light);
+            }
+        }
+
+        .notification-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+
+            .notification-icon {
+                font-size: 20px;
+                background: $gradient-primary;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-top: 2px;
+                opacity: 0.9;
+            }
+
+            .notification-content {
+                flex: 1;
+                min-width: 0;
+
+                .notification-title {
+                    font-weight: 500;
+                    font-size: 15px;
+                    color: var(--text-primary);
+                    margin-bottom: 6px;
+                    line-height: 1.4;
+                }
+
+                .notification-desc {
+                    color: var(--text-secondary);
+                    font-size: 14px;
+                    margin-bottom: 8px;
+                    line-height: 1.5;
+                }
+
+                .notification-time {
+                    color: var(--text-secondary);
+                    font-size: 13px;
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    &-profile {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 6px;
+        border-radius: 8px;
+
+        &:hover {
+            background: linear-gradient(45deg, var(--primary-light) 0%, transparent 100%);
+        }
+
+        .ant-avatar {
+            background: $gradient-primary;
+            vertical-align: middle;
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            border: transparent;
+            border-radius: 15px !important;
+        }
+
+        &-name {
+            background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 15px;
+            font-weight: 500;
+        }
+    }
+}

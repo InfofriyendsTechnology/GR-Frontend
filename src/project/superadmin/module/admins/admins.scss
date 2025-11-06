@@ -1,0 +1,285 @@
+@use '../../../../styles/_variables.scss' as *;
+
+// Global modal styles
+:root {
+    --modal-z-index: 1000;
+}
+
+.ant-modal-root {
+    .ant-modal-mask {
+        z-index: var(--modal-z-index) !important;
+    }
+    
+    .ant-modal-wrap {
+        z-index: var(--modal-z-index) !important;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+// Admin Module Styles
+.admin-module {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+    overflow: hidden;
+
+    .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        margin-bottom: 24px;
+
+        .mfh_title {
+            margin: 0;
+            color: $text-primary;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .admin-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            .view-toggle {
+                display: flex;
+                gap: 4px;
+                padding: 4px;
+                background: $bg-light;
+                border-radius: 8px;
+
+                .btn-icon {
+                    width: 40px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 6px;
+                    border: none;
+                    background: transparent;
+                    color: $text-secondary;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+
+                    &:hover {
+                        color: $primary-color;
+                        background: rgba($primary-color, 0.1);
+                    }
+
+                    &.btn-primary {
+                        background: $primary-color;
+                        color: #fff;
+                    }
+                }
+            }
+
+            .btn {
+                height: 44px;
+                padding: 0 24px;
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                border-radius: 8px;
+                border: none;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+                &.btn-primary {
+                    background: $primary-color;
+                    color: #fff;
+
+                    &:hover {
+                        transform: translateY(-1px);
+                        box-shadow: 0 4px 12px rgba($primary-color, 0.2);
+                    }
+                }
+
+                svg {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+// Modal Styles
+.admin-modal {
+    .ant-modal-content {
+        padding: 0;
+        background: $bg-dark;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+        border: 1px solid rgba($border-color, 0.1);
+        overflow: hidden;
+    }
+
+    .ant-modal-header {
+        padding: 20px 24px;
+        background: $primary-color;
+        border-bottom: 1px solid rgba($border-color, 0.1);
+        margin: 0;
+
+        .ant-modal-title {
+            color: #fff;
+            margin: 0;
+            
+            .modal-title {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                color: #fff;
+                font-size: 18px;
+                font-weight: 600;
+
+                .modal-icon {
+                    font-size: 20px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .ant-modal-close {
+        top: 18px;
+        right: 20px;
+        color: rgba(255, 255, 255, 0.8);
+        transition: all 0.3s ease;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+
+    .ant-modal-body {
+        padding: 24px;
+    }
+
+    // Form Styles
+    .admin-form {
+        .ant-form-item {
+            margin-bottom: 24px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .ant-form-item-label {
+                padding: 0;
+                margin-bottom: 8px;
+
+                > label {
+                    color: $text-primary;
+                    font-weight: 500;
+                    font-size: 14px;
+                    height: auto;
+
+                    &.ant-form-item-required:not(.ant-form-item-required-mark-optional) {
+                        &::before {
+                            display: none;
+                        }
+
+                        &::after {
+                            display: inline-block;
+                            margin-left: 4px;
+                            color: $text-error;
+                            font-size: 14px;
+                            font-family: SimSun, sans-serif;
+                            line-height: 1;
+                            content: '*';
+                        }
+                    }
+                }
+            }
+
+            .ant-input {
+                height: 40px;
+                padding: 8px 12px;
+                background: $bg-primary;
+                border: 1px solid $border-color;
+                border-radius: 8px;
+                color: $text-primary;
+                transition: all 0.3s ease;
+
+                &::placeholder {
+                    color: $text-secondary;
+                }
+
+                &:hover, &:focus {
+                    border-color: $primary-color;
+                    box-shadow: none;
+                }
+            }
+
+            .ant-input-password {
+                background: $bg-primary;
+                border: 1px solid $border-color;
+                border-radius: 8px;
+                padding: 0;
+
+                .ant-input {
+                    border: none;
+                    height: 38px;
+                }
+
+                .ant-input-suffix {
+                    margin-right: 8px;
+                    color: $text-secondary;
+                }
+
+                &:hover, &:focus-within {
+                    border-color: $primary-color;
+                }
+            }
+        }
+
+        .form-actions {
+            margin: 32px -24px -24px;
+            padding: 24px;
+            background: $bg-primary;
+            border-top: 1px solid rgba($border-color, 0.1);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+
+            .ant-btn {
+                height: 40px;
+                padding: 0 24px;
+                border-radius: 8px;
+                font-weight: 500;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.3s ease;
+
+                &-default {
+                    background: transparent;
+                    border: 1px solid $border-color;
+                    color: $text-primary;
+
+                    &:hover {
+                        border-color: $primary-color;
+                        color: $primary-color;
+                    }
+                }
+
+                &-primary {
+                    background: $primary-color;
+                    border: none;
+                    color: #fff;
+
+                    &:hover {
+                        transform: translateY(-1px);
+                        box-shadow: 0 4px 12px rgba($primary-color, 0.2);
+                    }
+                }
+            }
+        }
+    }
+}

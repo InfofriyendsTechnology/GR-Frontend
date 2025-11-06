@@ -1,0 +1,11 @@
+.company-overview {
+    padding: 24px;
+    min-height: calc(100vh - 64px);
+
+    .company-overview-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+    }
+}

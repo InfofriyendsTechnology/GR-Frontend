@@ -1,0 +1,170 @@
+@use '../../../../../styles/_variables.scss' as *;
+
+.admin-list {
+    margin-top: 16px;
+    background: transparent;
+    border-radius: 16px;
+
+    &.error-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        background: $bg-dark;
+        border: 1px solid $border-color;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        
+        p {
+            color: $text-error;
+            font-size: 16px;
+            text-align: center;
+            margin: 0;
+        }
+    }
+
+    .ant-table-wrapper {
+        background: $bg-dark;
+        border-radius: 16px;
+        border: 1px solid $border-color;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .ant-table {
+        background: transparent;
+
+
+            background: transparent;
+        .ant-table-thead > tr > th {
+            background: transparent;
+            color: $text-primary;
+            font-weight: 600;
+            border-bottom: 1px solid $border-color !important;
+
+            &::before {
+                display: none;
+            }
+        }
+
+        .ant-table-tbody > tr > td {
+            border-bottom: 1px solid $border-color !important;
+            background: transparent;
+        }
+
+        .ant-table-row {
+            &:hover {
+                cursor: pointer;
+                td {
+                    background: rgba($primary-color, 0.05) !important;
+                }
+            }
+        }
+    }
+
+    .ant-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        height: 36px;
+        padding: 0 16px;
+        font-weight: 500;
+
+        &.ant-btn-primary {
+            background: $primary-color;
+            border: none;
+            color: #fff;
+        }
+
+        &.ant-btn-default {
+            background: transparent;
+            border: 1px solid $border-color;
+            color: $text-primary;
+        }
+    }
+}
+
+.admin-grid {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 4px;
+
+    .ant-card-head {
+        border-bottom: 1px solid $border-color !important;
+    }
+
+    .admin-card {
+        background: $bg-dark;
+        border-radius: 16px;
+        border: 1px solid $border-color;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        height: 100%;
+        transition: all 0.3s ease;
+        overflow: hidden;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .admin-card-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 24px;
+
+            .admin-avatar {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 16px;
+                background: $primary-color;
+                font-size: 24px;
+                font-weight: 600;
+                color: #fff;
+            }
+
+            .admin-info {
+                width: 100%;
+
+                .admin-name {
+                    margin: 0;
+                    font-size: 20px;
+                    font-weight: 700;
+                    color: $text-primary;
+                }
+
+                .admin-email {
+                    margin: 8px 0;
+                    color: $text-secondary;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .ant-card-actions {
+            background: transparent;
+            border-top: 1px solid $border-color;
+
+            li {
+                margin: 0;
+                border-right: 1px solid $border-color;
+                
+                &:last-child {
+                    border-right: none;
+                }
+                
+                .ant-btn {
+                    width: 100%;
+                    height: 46px;
+                    border: none;
+                    border-radius: 0;
+                    color: $text-secondary;
+                    background: transparent;
+                }
+            }
+        }
+    }
+} 

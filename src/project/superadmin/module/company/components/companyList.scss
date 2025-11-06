@@ -1,0 +1,185 @@
+@use '../../../../../styles/_variables.scss' as *;
+
+.company-list-container {
+    .company-table {
+        .ant-table {
+            background: transparent;
+            border-radius: $border-radius;
+        }
+    }
+
+    .payment-status-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .payment-status-badge-container {
+        flex-shrink: 0;
+    }
+
+    .payment-status-toggle {
+        .payment-switch {
+            border-radius: 20px !important;
+            min-width: 70px;
+            font-weight: 600;
+            
+            &.trial {
+                &.ant-switch-checked {
+                    background-color: $text-success;
+                }
+                &:not(.ant-switch-checked) {
+                    background-color: $text-warning;
+                }
+            }
+            
+            &.paid {
+                background-color: $text-success;
+            }
+
+            &.unpaid {
+                &.ant-switch-checked {
+                    background-color: $text-success;
+                }
+                &:not(.ant-switch-checked) {
+                    background-color: $text-error;
+                }
+            }
+        }
+    }
+
+    .payment-status-select {
+        width: 100%;
+        
+        .ant-select-selector {
+            padding: 0 !important;
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .ant-select-arrow {
+            display: none;
+        }
+    }
+
+    .payment-status-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 80px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        margin: 0;
+
+        &.trial {
+            color: $text-warning;
+            background: rgba($text-warning, 0.1);
+            border-color: rgba($text-warning, 0.2);
+        }
+
+        &.paid {
+            color: $text-success;
+            background: rgba($text-success, 0.1);
+            border-color: rgba($text-success, 0.2);
+        }
+
+        &.unpaid {
+            color: $text-error;
+            background: rgba($text-error, 0.1);
+            border-color: rgba($text-error, 0.2);
+        }
+    }
+
+    .status-toggle {
+        .status-switch {
+            border-radius: 20px !important;
+            min-width: 70px;
+            font-weight: 600;
+            
+            &.active {
+                border: 1px solid $text-success;
+                background: rgba($text-success, 0.1);
+                color: $text-success;
+            }
+
+            &.inactive {
+                border: 1px solid $text-error;
+                background: rgba($text-error, 0.1);
+                color: $text-error;
+            }
+        }
+    }
+
+    .bulk-actions {
+        margin-bottom: 16px;
+    }
+}
+
+.plan-type-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Dark mode overrides
+.dark-mode {
+    .company-list-container {
+        .company-table {
+            .ant-table {
+                background: transparent;
+            }
+        }
+
+        .payment-status-badge {
+            &.trial {
+                background: rgba(245, 158, 11, 0.15) !important;
+            }
+
+            &.paid {
+                background: rgba(16, 185, 129, 0.15) !important;
+            }
+
+            &.unpaid {
+                background: rgba(239, 68, 68, 0.15) !important;
+            }
+        }
+    }
+}
+
+// Payment Status Dropdown Styles
+.payment-status-dropdown {
+    padding: 4px !important;
+    border-radius: 8px !important;
+    background: var(--bg-primary) !important;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+                0 3px 6px -4px rgba(0, 0, 0, 0.12),
+                0 9px 28px 8px rgba(0, 0, 0, 0.05) !important;
+
+    .ant-select-item {
+        padding: 4px !important;
+        border-radius: 6px !important;
+        
+        &:hover {
+            background: rgba($bg-light, 0.05) !important;
+        }
+
+        &.ant-select-item-option-selected {
+            background: transparent !important;
+        }
+
+        .ant-select-item-option-content {
+            .payment-status-badge {
+                margin: 0;
+                width: 100%;
+            }
+        }
+    }
+} 

@@ -1,0 +1,388 @@
+@use '../../../../styles/_variables.scss' as *;
+
+// Global modal styles
+:root {
+    --modal-z-index: 1000;
+}
+
+.ant-modal-root {
+    .ant-modal-mask {
+        z-index: var(--modal-z-index) !important;
+    }
+    
+    .ant-modal-wrap {
+        z-index: var(--modal-z-index) !important;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.plan-form {
+    .duration-combined-field {
+        .ant-input-group {
+            display: flex;
+            
+            .ant-input-number {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            
+            .ant-select {
+                .ant-select-selector {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    border-left: none;
+                }
+            }
+        }
+    }
+}
+
+.plan {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+    overflow: hidden;
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+
+        .mfh_title {
+            margin: 0;
+            color: $text-primary;
+        }
+
+        .plan-header-actions {
+            .view-toggle {
+                display: inline-flex;
+                background: $bg-light;
+                border-radius: $border-radius;
+                padding: 2px;
+
+                .btn-icon {
+                    padding: 8px;
+                    border-radius: $border-radius;
+                    transition: all 0.3s;
+
+                    &.btn-primary {
+                        background: $primary-color;
+                        color: $text-white;
+                    }
+
+                    &.btn-ghost {
+                        background: transparent;
+                        color: $text-primary;
+
+                        &:hover {
+                            color: $primary-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Grid View Styles
+    &-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        padding: 24px;
+    }
+
+    .status-badge {
+        padding: 4px 8px;
+        border-radius: $border-radius;
+        font-size: 12px;
+        font-weight: 500;
+
+        &.active {
+            color: $text-success;
+            background: rgba($text-success, 0.1);
+        }
+
+        &.inactive {
+            color: $text-error;
+            background: rgba($text-error, 0.1);
+        }
+    }
+
+    // Table Styles
+    .ant-table-wrapper {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        border-radius: 12px;
+        overflow: hidden;
+
+        .ant-table {
+            background: transparent;
+
+            .ant-table-thead > tr > th {
+                background: $bg-secondary;
+                color: $text-primary;
+                font-weight: 600;
+                border-bottom: 1px solid $border-light;
+            }
+
+            .ant-table-tbody > tr > td {
+                border-bottom: 1px solid $border-light;
+                background: transparent !important;
+
+                &.actions-cell {
+                    .action-button {
+                        background: transparent !important;
+                        border: none;
+                        padding: 8px;
+                        color: $text-secondary;
+
+                        &:hover {
+                            color: $primary-color;
+                            background: transparent !important;
+                        }
+                    }
+                }
+            }
+
+            .ant-table-row {
+                &:hover {
+                    > td {
+                        background: $bg-light !important;
+
+                        &.actions-cell {
+                            background: $bg-light !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pricing-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+    
+    &.inactive {
+        opacity: 0.7;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        
+        &:hover {
+            transform: translateY(-3px);
+        }
+        
+        .pricing-header {
+            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%) !important;
+        }
+    }
+
+    .pricing-header {
+        padding: 24px;
+        text-align: center;
+        color: var(--text-primary);
+        background: var(--bg-secondary);
+
+        &.free {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+        }
+
+        &.personal {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        &.business {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        }
+
+        .plan-type {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price {
+            font-size: 36px !important;
+            font-weight: 700 !important;
+            color: var(--text-primary) !important;
+            margin: 0 !important;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .plan-duration {
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 8px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+
+    .pricing-content {
+        padding: 24px;
+
+        .features {
+            margin-bottom: 24px;
+
+            .feature-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: 16px;
+
+                .check-icon {
+                    color: #22c55e;
+                    margin-right: 12px;
+                    font-size: 16px;
+                }
+
+                .ant-typography {
+                    color: #4b5563;
+                    margin: 0;
+                }
+            }
+        }
+
+        .pricing-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+
+            .action-button {
+                flex: 1;
+                height: 40px;
+                font-weight: 600;
+                border-radius: 8px;
+            }
+
+            .more-actions {
+                width: 40px;
+                height: 40px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+            }
+        }
+    }
+}
+
+// Modal Styles
+.plan-modal {
+    .plan-modal-header {
+        .plan-modal-header-content {
+            display: flex;
+            align-items: center;
+
+            .plan-modal-header-title {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 16px;
+                font-weight: 500;
+                color: $text-primary;
+
+                svg {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+
+    .form-actions {
+        margin-bottom: 0;
+        margin-top: 24px;
+        text-align: right;
+        padding-top: 16px;
+        border-top: 1px solid $border-light;
+    }
+
+    .ant-form-item {
+        margin-bottom: 16px;
+
+        &-label {
+            padding: 0;
+            margin-bottom: 4px;
+
+            > label {
+                color: $text-primary !important;
+                font-weight: 500;
+                height: auto;
+                font-size: 14px;
+            }
+        }
+
+        .ant-input,
+        .ant-input-number,
+        .ant-select-selector {
+            background: $bg-primary !important;
+            border: 1px solid $border-color !important;
+            color: $text-primary !important;
+            height: 40px;
+            padding: 4px 12px;
+            border-radius: 8px;
+
+            &:hover, &:focus {
+                border-color: $primary-color !important;
+                box-shadow: none;
+            }
+        }
+
+        .ant-input-number {
+            width: 100% !important;
+        }
+
+        .ant-switch {
+            background: $text-secondary;
+
+            &.ant-switch-checked {
+                background: $text-success;
+            }
+        }
+    }
+}
+
+.plan-view-modal {
+    .ant-descriptions {
+        background: $bg-primary;
+        border-radius: $border-radius;
+        overflow: hidden;
+
+        .ant-descriptions-item {
+            padding: 16px;
+            border-bottom: 1px solid $border-light;
+
+            .ant-descriptions-item-label {
+                color: $text-secondary;
+                font-weight: 500;
+            }
+
+            .ant-descriptions-item-content {
+                color: $text-primary;
+            }
+        }
+    }
+} 

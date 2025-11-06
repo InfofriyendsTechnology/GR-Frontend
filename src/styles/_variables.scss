@@ -1,0 +1,77 @@
+// Colors
+$primary-color: var(--primary-color);
+$primary-color-rgb: var(--primary-color-rgb);
+$primary-light: var(--primary-light);
+$primary-hover: var(--primary-hover);
+
+
+// Background colors
+$bg-primary: var(--bg-primary);
+$bg-secondary: var(--bg-secondary);
+$bg-light: var(--bg-light);
+$bg-dark: var(--bg-dark);
+
+
+// Text colors
+$text-white: var(--text-white);
+$text-black: var(--text-black);
+$text-primary: var(--text-primary);
+$text-secondary: var(--text-secondary);
+$text-light: var(--text-light);
+$text-blue: var(--text-blue);
+$text-blue-dark: var(--text-blue-dark);
+$text-error: var(--text-error);
+$text-success: var(--text-success);
+$text-warning: var(--text-warning);
+$text-info: var(--text-info);
+
+// Gradient colors - Only keeping the ones actually used
+$text-gradient-primary: var(--text-gradient-primary);
+$text-gradient-secondary: var(--text-gradient-secondary);
+$text-gradient-error: var(--text-gradient-error);
+
+// Border and shadow
+$border-color: var(--border-color);
+$border-light: var(--border-light);
+$border-input-light: rgba(0, 0, 0, 0.2);
+$border-input-dark: rgba(255, 255, 255, 0.25);
+$shadow-color: var(--shadow-color);
+
+// Layout
+$header-height: 64px;
+$sidebar-width: 256px;
+$sidebar-collapsed-width: 80px;
+$border-radius: 8px;
+
+
+// Transitions
+$transition-default: all 0.2s ease;
+
+// Gradients - Only keeping the ones actually used
+$gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+$gradient-secondary: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+$gradient-error: linear-gradient(135deg, #ff4d4f, #ff1f1f);
+$gradient-blue: linear-gradient(90deg, #19a7ce 0%, #146C94 100%);
+
+
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin hover-effect {
+    transition: $transition-default;
+    &:hover {
+        background: $primary-light;
+        color: $primary-color;
+    }
+}

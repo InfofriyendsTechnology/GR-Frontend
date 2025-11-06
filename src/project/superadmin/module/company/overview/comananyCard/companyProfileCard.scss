@@ -1,0 +1,209 @@
+@use '../../../../../../styles/_variables.scss' as *;
+
+.company-profile-wrapper {
+    position: relative;
+    margin-top: 16px;
+    padding: 24px;
+    background: $bg-dark;
+    border-radius: 12px;
+    border: 1px solid rgba($border-color, 0.1);
+    box-shadow: 0 4px 16px $shadow-color;
+
+    .profile-header {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 32px;
+
+        .avatar-section {
+            position: relative;
+
+            .company-avatar {
+                background: $primary-color;
+                width: 80px;
+                height: 80px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 28px;
+                font-weight: 500;
+                color: $text-white;
+            }
+
+            .status-dot {
+                position: absolute;
+                top: -2px;
+                right: -2px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background-color: $text-success;
+                border: 2px solid $bg-dark;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 12px;
+                    height: 12px;
+                    background-color: $text-success;
+                    border-radius: 50%;
+                    animation: pulse 2s ease-in-out infinite;
+                }
+
+                &.inactive {
+                    background-color: $text-secondary;
+                    &::after {
+                        background-color: $text-secondary;
+                    }
+                }
+            }
+
+            @keyframes pulse {
+                0% {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 0.8;
+                }
+                50% {
+                    transform: translate(-50%, -50%) scale(2);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        .header-content {
+            flex: 1;
+            padding-top: 4px;
+
+            .title-section {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 4px;
+
+                h2 {
+                    margin: 0;
+                    color: $text-primary;
+                    font-size: 24px;
+                    font-weight: 600;
+                    line-height: 1.3;
+                }
+
+                .category-tag {
+                    display: flex;
+                    align-items: center;
+                    background: transparent;
+                    color: $primary-color;
+                    border: none;
+                    padding: 0;
+                    font-size: 14px;
+                    height: auto;
+                    margin-top: 2px;
+
+                    .anticon {
+                        margin-right: 4px;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            .join-date {
+                color: $text-secondary;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                margin-bottom: 0;
+
+                .anticon {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 32px;
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: $text-primary;
+            font-size: 14px;
+
+            .anticon {
+                color: $primary-color;
+                font-size: 16px;
+            }
+        }
+    }
+
+    .about-section {
+        h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: $text-primary;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+
+            .anticon {
+                color: $primary-color;
+                font-size: 16px;
+            }
+        }
+
+        p {
+            color: $text-secondary;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+    }
+}
+
+// Google Review Modal Styling
+.google-review-modal {
+    .ant-modal-header {
+        background-color: #20B2AA;
+        border-bottom: none;
+        border-radius: 8px 8px 0 0;
+        padding: 16px 24px;
+    }
+    
+    .ant-modal-title {
+        color: white;
+        font-weight: 500;
+    }
+    
+    .ant-modal-close {
+        color: white;
+    }
+    
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 24px;
+        
+        .ok-button {
+            background-color: #20B2AA;
+            border-color: #20B2AA;
+            
+            &:hover, &:focus {
+                background-color: #1a9e98;
+                border-color: #1a9e98;
+            }
+        }
+    }
+}
