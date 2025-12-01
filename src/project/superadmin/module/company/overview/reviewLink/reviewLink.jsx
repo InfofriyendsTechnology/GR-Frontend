@@ -17,9 +17,9 @@ const ReviewLink = ({ company }) => {
     const googleReview = company?.googleReview;
 
     const handleEditLink = () => {
-        const initialLink = googleReview?.googleReviewLink || '';
+        const initialPlaceId = googleReview?.placeId || '';
         form.setFieldsValue({
-            googleReviewLink: initialLink
+            placeId: initialPlaceId
         });
         setIsEditLinkModalVisible(true);
     };
@@ -33,14 +33,14 @@ const ReviewLink = ({ company }) => {
                 // Optimistic update for existing review
                 const optimisticData = {
                     ...googleReview,
-                    googleReviewLink: values.googleReviewLink
+                    placeId: values.placeId
                 };
                 
                 // Update the cache immediately
                 dispatch(
                     companyApi.util.updateQueryData('getCompany', company.id, (draft) => {
                         if (draft?.data?.googleReview) {
-                            draft.data.googleReview.googleReviewLink = values.googleReviewLink;
+                            draft.data.googleReview.placeId = values.placeId;
                         }
                     })
                 );
@@ -57,7 +57,7 @@ const ReviewLink = ({ company }) => {
                 const newReviewData = {
                     companyId: company.id,
                     companyName: company.companyName,
-                    googleReviewLink: values.googleReviewLink
+                    placeId: values.placeId
                 };
                 
                 // Update the cache immediately
@@ -97,12 +97,12 @@ const ReviewLink = ({ company }) => {
             <div className="info-item">
                 <LinkOutlined />
                 <div className="link-container">
-                    {googleReview?.googleReviewLink ? (
+                    {googleReview?.placeId ? (
                         <div className="google-review-link">
                             <div className="link-text-container">
-                                <a href={googleReview.googleReviewLink} target="_blank" rel="noopener noreferrer">
-                                    {googleReview.googleReviewLink}
-                                </a>
+                                <span className="place-id-display">
+                                    Place ID: {googleReview.placeId}
+                                </span>
                             </div>
                             <Button 
                                 type="text" 
@@ -119,14 +119,14 @@ const ReviewLink = ({ company }) => {
                             onClick={handleEditLink}
                             className="add-link-button"
                         >
-                            Add Review Link
+                            Add Place ID
                         </Button>
                     )}
                 </div>
             </div>
 
             <Modal
-                title="Edit Google Review Link"
+                title="Edit Google Place ID"
                 open={isEditLinkModalVisible}
                 onCancel={() => setIsEditLinkModalVisible(false)}
                 footer={null}
@@ -138,14 +138,11 @@ const ReviewLink = ({ company }) => {
                     layout="vertical"
                 >
                     <Form.Item
-                        name="googleReviewLink"
-                        label="Google Review Link"
-                        rules={[
-                            { required: true, message: 'Please enter the Google Review Link' },
-                            { type: 'url', message: 'Please enter a valid URL' }
-                        ]}
+                        name="placeId"
+                        label="Google Place ID"
+                        help="Optional: Add Google Place ID to enable review links"
                     >
-                        <Input placeholder="https://www.google.com/maps/place/..." />
+                        <Input placeholder="ChIJN1t_tDeuEmsRUsoyG83frY4" />
                     </Form.Item>
                     
                     <div className="modal-footer">

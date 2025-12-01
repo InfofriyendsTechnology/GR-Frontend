@@ -8,6 +8,12 @@ import logo from '../../assests/images/logo.png';
 
 const DEFAULT_REVIEW = "it's a good company";
 
+// Generate Google review link from Place ID
+const generateReviewLink = (placeId) => {
+    if (!placeId) return 'https://www.google.com';
+    return `https://search.google.com/local/writereview?placeid=${placeId}`;
+};
+
 const CompanyReviews = () => {
     const { companyName, id } = useParams();
     const navigate = useNavigate();
@@ -44,8 +50,9 @@ const CompanyReviews = () => {
                     }
                 }).unwrap();
 
-                // Open Google immediately without delay
-                window.open(review.googleReviewLink, '_blank');
+                // Open Google immediately without delay with generated link
+                const reviewLink = generateReviewLink(review.placeId);
+                window.open(reviewLink, '_blank');
                     
                 // Reset copied state after a short delay
                 setTimeout(() => {

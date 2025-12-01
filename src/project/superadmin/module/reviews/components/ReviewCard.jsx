@@ -4,8 +4,14 @@ import { DeleteOutlined, EyeOutlined, LinkOutlined } from '@ant-design/icons';
 
 const { Text, Paragraph } = Typography;
 
+// Generate Google review link from Place ID
+const generateReviewLink = (placeId) => {
+    if (!placeId) return 'https://www.google.com';
+    return `https://search.google.com/local/writereview?placeid=${placeId}`;
+};
+
 const ReviewCard = ({ review, onView, onDelete }) => {
-    const { customerName, reviewText, date, googleReviewLink } = review;
+    const { customerName, reviewText, date, placeId } = review;
 
     return (
         <Card
@@ -42,7 +48,7 @@ const ReviewCard = ({ review, onView, onDelete }) => {
                 <Button
                     type="link"
                     icon={<LinkOutlined />}
-                    href={googleReviewLink}
+                    href={generateReviewLink(placeId)}
                     target="_blank"
                 >
                     View on Google

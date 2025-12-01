@@ -8,6 +8,12 @@ import ReviewCard from './ReviewCard';
 
 const { Link } = Typography;
 
+// Generate Google review link from Place ID
+const generateReviewLink = (placeId) => {
+    if (!placeId) return 'https://www.google.com';
+    return `https://search.google.com/local/writereview?placeid=${placeId}`;
+};
+
 const ReviewList = ({ onView, viewMode }) => {
     const navigate = useNavigate();
     const { data: reviewsResponse, isLoading: isReviewsLoading } = useGetReviewsQuery();
@@ -174,14 +180,14 @@ const ReviewList = ({ onView, viewMode }) => {
         },
         {
             title: 'Google Review Link',
-            dataIndex: 'googleReviewLink',
-            key: 'googleReviewLink',
+            dataIndex: 'placeId',
+            key: 'placeId',
             width: '15%',
-            render: (link) => (
+            render: (placeId) => (
                 <Button
                     type="link"
                     icon={<LinkOutlined />}
-                    href={link}
+                    href={generateReviewLink(placeId)}
                     target="_blank"
                 >
                     View
@@ -213,7 +219,7 @@ const ReviewList = ({ onView, viewMode }) => {
                             customerName: review.companyName,
                             reviewText: review.review,
                             date: review.createdAt,
-                            googleReviewLink: review.googleReviewLink
+                            placeId: review.placeId
                         }}
                         onView={() => onView?.(review)}
                         onDelete={() => handleDelete(review.id)}
