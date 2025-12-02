@@ -11,7 +11,7 @@ const DEFAULT_REVIEW = "it's a good company";
 // Generate Google review link from Place ID
 const generateReviewLink = (placeId) => {
     if (!placeId) return 'https://www.google.com';
-    return `https://search.google.com/local/writereview?placeid=${placeId}`;
+    return `https://search.google.com/local/writereview?placeid=${placeId}&source=g.page.m.nr._&laa=nmx-review-solicitation-recommendation-card`;
 };
 
 const CompanyReviews = () => {
@@ -29,7 +29,7 @@ const CompanyReviews = () => {
         if (reviewResponse?.success && reviewResponse.data) {
             const urlCompanyName = decodeURIComponent(companyName);
             const reviewCompanyName = reviewResponse.data.companyName.replace(/\s+/g, '-').toLowerCase();
-            
+
             if (urlCompanyName !== reviewCompanyName) {
                 navigate(`/reviews/${reviewCompanyName}/${id}`, { replace: true });
             }
@@ -41,19 +41,19 @@ const CompanyReviews = () => {
             if (review.review) {
                 await navigator.clipboard.writeText(review.review);
                 setCopied(true);
-                
-                await updateUsedReview({ 
-                    id: review.id, 
-                    data: { 
-                        index: review.index, 
-                        review: review.review 
+
+                await updateUsedReview({
+                    id: review.id,
+                    data: {
+                        index: review.index,
+                        review: review.review
                     }
                 }).unwrap();
 
                 // Open Google immediately without delay with generated link
                 const reviewLink = generateReviewLink(review.placeId);
                 window.open(reviewLink, '_blank');
-                    
+
                 // Reset copied state after a short delay
                 setTimeout(() => {
                     setCopied(false);
@@ -70,11 +70,11 @@ const CompanyReviews = () => {
 
     const handleRefresh = async () => {
         setRefreshing(true);
-        
+
         try {
             // Immediately refetch without animations or delays
             const result = await refetch();
-            
+
             // If there's an error or no data, show a message
             if (result.error) {
                 console.error('Error refreshing review:', result.error);
@@ -91,7 +91,7 @@ const CompanyReviews = () => {
             <FaStar key={index} className="star-icon" />
         ));
     };
-    
+
     const renderParticles = () => {
         return Array(20).fill(0).map((_, index) => (
             <div key={index} className="particle"></div>
@@ -101,14 +101,14 @@ const CompanyReviews = () => {
     // Render the expired plan message
     const renderExpiredPlanMessage = () => {
         const displayCompanyName = decodeURIComponent(companyName).replace(/-/g, ' ');
-        
+
         return (
             <>
                 <div className="particles">
                     {renderParticles()}
                 </div>
-                
-                <motion.div 
+
+                <motion.div
                     className="review-header"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -116,8 +116,8 @@ const CompanyReviews = () => {
                 >
                     <h2>{displayCompanyName}</h2>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                     className="expired-plan-card"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -126,30 +126,30 @@ const CompanyReviews = () => {
                     <div className="expired-icon">
                         <FaExclamationTriangle />
                     </div>
-                    
+
                     <h3>Subscription Expired</h3>
-                    
+
                     <p>
                         This company's review service is currently unavailable as the subscription plan has expired.
                     </p>
-                    
+
                     <p className="contact-info">
                         Please contact the company administrator to renew the subscription.
                     </p>
                 </motion.div>
-                
+
                 <motion.div
                     className="company-footer"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                        duration: 0.6, 
+                    transition={{
+                        duration: 0.6,
                         delay: 0.8,
                         ease: "easeOut"
                     }}
                 >
                     <div className="footer-branding">
-                        <motion.div 
+                        <motion.div
                             className="ai-powered"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -159,15 +159,15 @@ const CompanyReviews = () => {
                             <span className="diamond">◈</span>
                             <span>Powered</span>
                         </motion.div>
-                        
+
                         <div className="company-logo">
                             <div className="logo-with-text">
                                 <motion.div
                                     className="logo-container"
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ 
-                                        duration: 0.5, 
+                                    transition={{
+                                        duration: 0.5,
                                         delay: 1.2,
                                         type: "spring",
                                         stiffness: 200
@@ -176,9 +176,9 @@ const CompanyReviews = () => {
                                     <img src={logo} alt="Infofriends" className="logo-icon" />
                                     <div className="glow-effect"></div>
                                 </motion.div>
-                                
+
                                 <div className="text-container">
-                                    <motion.span 
+                                    <motion.span
                                         className="logo-text"
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -186,7 +186,7 @@ const CompanyReviews = () => {
                                     >
                                         Infofriends
                                     </motion.span>
-                                    <motion.span 
+                                    <motion.span
                                         className="tagline-text"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
@@ -202,7 +202,7 @@ const CompanyReviews = () => {
             </>
         );
     };
-    
+
     // Render 404 error page
     const render404Page = () => {
         return (
@@ -210,8 +210,8 @@ const CompanyReviews = () => {
                 <div className="particles">
                     {renderParticles()}
                 </div>
-                
-                <motion.div 
+
+                <motion.div
                     className="error-404-card"
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
@@ -220,16 +220,16 @@ const CompanyReviews = () => {
                     <div className="error-icon">
                         <FaExclamationCircle />
                     </div>
-                    
+
                     <h2>404</h2>
                     <h3>Page Not Found</h3>
-                    
+
                     <p>
                         The review page you are looking for doesn't exist or has been removed.
                     </p>
-                    
-                    <motion.button 
-                        className="primary-button" 
+
+                    <motion.button
+                        className="primary-button"
                         onClick={() => window.location.href = '/'}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -237,13 +237,13 @@ const CompanyReviews = () => {
                         Go to Homepage
                     </motion.button>
                 </motion.div>
-                
+
                 <motion.div
                     className="company-footer"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                        duration: 0.6, 
+                    transition={{
+                        duration: 0.6,
                         delay: 0.8,
                         ease: "easeOut"
                     }}
@@ -255,8 +255,8 @@ const CompanyReviews = () => {
                                     className="logo-container"
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ 
-                                        duration: 0.5, 
+                                    transition={{
+                                        duration: 0.5,
                                         delay: 1.2,
                                         type: "spring",
                                         stiffness: 200
@@ -264,9 +264,9 @@ const CompanyReviews = () => {
                                 >
                                     <img src={logo} alt="Infofriyends" className="logo-icon" />
                                 </motion.div>
-                                
+
                                 <div className="text-container">
-                                    <motion.span 
+                                    <motion.span
                                         className="logo-text"
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -274,7 +274,7 @@ const CompanyReviews = () => {
                                     >
                                         Infofriyends
                                     </motion.span>
-                                    <motion.span 
+                                    <motion.span
                                         className="tagline-text"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
@@ -299,15 +299,15 @@ const CompanyReviews = () => {
             if (error.status === 404 || error?.data?.message?.includes("not found") || error?.message?.includes("Failed to fetch")) {
                 return render404Page();
             }
-            
+
             if (error?.data?.message === "No more reviews available") {
                 return (
                     <>
                         <div className="particles">
                             {renderParticles()}
                         </div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             className="review-header"
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
@@ -315,15 +315,15 @@ const CompanyReviews = () => {
                         >
                             <h2>{decodeURIComponent(companyName).replace(/-/g, ' ')}</h2>
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             className="review-card"
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                         >
                             <div className="card-header">
-                                <button 
+                                <button
                                     className="refresh-button"
                                     onClick={handleRefresh}
                                     disabled={refreshing}
@@ -332,7 +332,7 @@ const CompanyReviews = () => {
                                     <FaSync className={refreshing ? "spinning" : ""} />
                                 </button>
                             </div>
-                            
+
                             <div className="review-content">
                                 <div className="rating-container">
                                     {renderStars()}
@@ -341,12 +341,12 @@ const CompanyReviews = () => {
                                     {DEFAULT_REVIEW}
                                 </p>
                             </div>
-                            
+
                             <div className="card-footer">
-                                <button 
+                                <button
                                     className={`copy-button ${copied ? 'copied' : ''}`}
-                                    onClick={() => handleCopyReview({ 
-                                        review: DEFAULT_REVIEW, 
+                                    onClick={() => handleCopyReview({
+                                        review: DEFAULT_REVIEW,
                                         googleReviewLink: reviewResponse?.data?.googleReviewLink || 'https://www.google.com'
                                     })}
                                     disabled={copied}
@@ -356,8 +356,8 @@ const CompanyReviews = () => {
                                 </button>
                             </div>
                         </motion.div>
-                        
-                        <motion.div 
+
+                        <motion.div
                             className="footer-text"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -370,14 +370,14 @@ const CompanyReviews = () => {
                             className="company-footer"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ 
-                                duration: 0.6, 
+                            transition={{
+                                duration: 0.6,
                                 delay: 0.8,
                                 ease: "easeOut"
                             }}
                         >
                             <div className="footer-branding">
-                                <motion.div 
+                                <motion.div
                                     className="ai-powered"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -387,15 +387,15 @@ const CompanyReviews = () => {
                                     <span className="diamond">◈</span>
                                     <span>Powered</span>
                                 </motion.div>
-                                
+
                                 <div className="company-logo">
                                     <div className="logo-with-text">
                                         <motion.div
                                             className="logo-container"
                                             initial={{ scale: 0.8, opacity: 0 }}
                                             animate={{ scale: 1, opacity: 1 }}
-                                            transition={{ 
-                                                duration: 0.5, 
+                                            transition={{
+                                                duration: 0.5,
                                                 delay: 1.2,
                                                 type: "spring",
                                                 stiffness: 200
@@ -404,9 +404,9 @@ const CompanyReviews = () => {
                                             <img src={logo} alt="Infofriyends" className="logo-icon" />
                                             <div className="glow-effect"></div>
                                         </motion.div>
-                                        
+
                                         <div className="text-container">
-                                            <motion.span 
+                                            <motion.span
                                                 className="logo-text"
                                                 initial={{ opacity: 0, x: -10 }}
                                                 animate={{ opacity: 1, x: 0 }}
@@ -414,7 +414,7 @@ const CompanyReviews = () => {
                                             >
                                                 Infofriyends
                                             </motion.span>
-                                            <motion.span 
+                                            <motion.span
                                                 className="tagline-text"
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
@@ -430,15 +430,15 @@ const CompanyReviews = () => {
                     </>
                 );
             }
-            
+
             // For other errors, show the generic error card
             return (
                 <>
                     <div className="particles">
                         {renderParticles()}
                     </div>
-                    
-                    <motion.div 
+
+                    <motion.div
                         className="error-card"
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
@@ -448,8 +448,8 @@ const CompanyReviews = () => {
                         <p>
                             {error.message || "Something went wrong. Please try again later."}
                         </p>
-                        <motion.button 
-                            className="primary-button" 
+                        <motion.button
+                            className="primary-button"
                             onClick={() => window.location.reload()}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -467,17 +467,17 @@ const CompanyReviews = () => {
         }
 
         const review = reviewResponse.data;
-        
+
         // Check if company is inactive (subscription expired)
         if (review.companyStatus === 'inactive') {
             return renderExpiredPlanMessage();
         }
-        
+
         // Convert any 'trial' status to 'unpaid' for display consistency
         if (review.paymentStatus === 'trial') {
             review.paymentStatus = 'unpaid';
         }
-        
+
         const reviewText = review.review || DEFAULT_REVIEW;
         const displayCompanyName = decodeURIComponent(companyName).replace(/-/g, ' ');
 
@@ -486,8 +486,8 @@ const CompanyReviews = () => {
                 <div className="particles">
                     {renderParticles()}
                 </div>
-                
-                <motion.div 
+
+                <motion.div
                     className="review-header"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -495,15 +495,15 @@ const CompanyReviews = () => {
                 >
                     <h2>{displayCompanyName}</h2>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                     className="review-card"
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                 >
                     <div className="card-header">
-                        <motion.button 
+                        <motion.button
                             className="refresh-button"
                             onClick={handleRefresh}
                             disabled={refreshing}
@@ -514,9 +514,9 @@ const CompanyReviews = () => {
                             <FaSync className={refreshing ? "spinning" : ""} />
                         </motion.button>
                     </div>
-                    
+
                     <div className="review-content">
-                        <motion.div 
+                        <motion.div
                             className="rating-container"
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
@@ -524,8 +524,8 @@ const CompanyReviews = () => {
                         >
                             {renderStars()}
                         </motion.div>
-                        
-                        <motion.p 
+
+                        <motion.p
                             className="review-text"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -533,13 +533,13 @@ const CompanyReviews = () => {
                         >
                             {reviewText}
                         </motion.p>
-                        
+
                         <div className="quote-marks"></div>
                     </div>
-                    
+
                     <div className="card-footer">
                         <div className="button-wrapper">
-                            <motion.button 
+                            <motion.button
                                 className={`copy-button ${copied ? 'copied' : ''}`}
                                 onClick={() => handleCopyReview(review)}
                                 disabled={copied}
@@ -552,22 +552,22 @@ const CompanyReviews = () => {
                                 <FaCopy className="button-icon" />
                                 <div className="button-text">
                                     {copied ? (
-                                    <>
-                                        Opening Google
-                                        <span className="loading-dots">
-                                            <span className="dot">.</span>
-                                            <span className="dot">.</span>
-                                            <span className="dot">.</span>
-                                        </span>
-                                    </>
-                                ) : 'Copy & Review on Google'}
+                                        <>
+                                            Opening Google
+                                            <span className="loading-dots">
+                                                <span className="dot">.</span>
+                                                <span className="dot">.</span>
+                                                <span className="dot">.</span>
+                                            </span>
+                                        </>
+                                    ) : 'Copy & Review on Google'}
                                 </div>
                             </motion.button>
                         </div>
                     </div>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                     className="footer-text"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -580,14 +580,14 @@ const CompanyReviews = () => {
                     className="company-footer"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                        duration: 0.6, 
+                    transition={{
+                        duration: 0.6,
                         delay: 0.8,
                         ease: "easeOut"
                     }}
                 >
                     <div className="footer-branding">
-                        <motion.div 
+                        <motion.div
                             className="ai-powered"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -597,15 +597,15 @@ const CompanyReviews = () => {
                             <span className="diamond">◈</span>
                             <span>Powered</span>
                         </motion.div>
-                        
+
                         <div className="company-logo">
                             <div className="logo-with-text">
                                 <motion.div
                                     className="logo-container"
                                     initial={{ scale: 0.8, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ 
-                                        duration: 0.5, 
+                                    transition={{
+                                        duration: 0.5,
                                         delay: 1.2,
                                         type: "spring",
                                         stiffness: 200
@@ -614,9 +614,9 @@ const CompanyReviews = () => {
                                     <img src={logo} alt="Infofriyends" className="logo-icon" />
                                     <div className="glow-effect"></div>
                                 </motion.div>
-                                
+
                                 <div className="text-container">
-                                    <motion.span 
+                                    <motion.span
                                         className="logo-text"
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -624,7 +624,7 @@ const CompanyReviews = () => {
                                     >
                                         Infofriyends
                                     </motion.span>
-                                    <motion.span 
+                                    <motion.span
                                         className="tagline-text"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
@@ -645,7 +645,7 @@ const CompanyReviews = () => {
     return (
         <div className="public-reviews-container">
             {/* Content container - show immediately */}
-            <motion.div 
+            <motion.div
                 className="content-container"
                 initial={{ opacity: 1 }}
                 animate={{ opacity: 1 }}

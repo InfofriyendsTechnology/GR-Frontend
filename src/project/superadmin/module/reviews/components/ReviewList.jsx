@@ -11,7 +11,7 @@ const { Link } = Typography;
 // Generate Google review link from Place ID
 const generateReviewLink = (placeId) => {
     if (!placeId) return 'https://www.google.com';
-    return `https://search.google.com/local/writereview?placeid=${placeId}`;
+    return `https://search.google.com/local/writereview?placeid=${placeId}&source=g.page.m.nr._&laa=nmx-review-solicitation-recommendation-card`;
 };
 
 const ReviewList = ({ onView, viewMode }) => {
@@ -115,7 +115,7 @@ const ReviewList = ({ onView, viewMode }) => {
 
     const handleBulkDelete = async () => {
         if (!selectedRowKeys.length) return;
-        
+
         setIsDeleting(true);
         try {
             const deletePromises = selectedRowKeys.map(id => deleteReview(id).unwrap());
@@ -252,8 +252,8 @@ const ReviewList = ({ onView, viewMode }) => {
                 onRow={(record) => ({
                     onClick: (e) => {
                         // Only prevent click on specific interactive elements
-                        if (e.target.closest('.ant-checkbox') || 
-                            e.target.closest('.ant-btn') || 
+                        if (e.target.closest('.ant-checkbox') ||
+                            e.target.closest('.ant-btn') ||
                             e.target.closest('a')) {
                             return;
                         }
