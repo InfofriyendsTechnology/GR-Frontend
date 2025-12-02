@@ -39,13 +39,13 @@ const CompanyReviews = () => {
     const handleCopyReview = async (review) => {
         try {
             if (review.review) {
-                // Open window FIRST (before any async operations) for Safari compatibility
-                const reviewLink = generateReviewLink(review.placeId);
-                const newWindow = window.open(reviewLink, '_blank');
-                
-                // Then do async operations
+                // Copy to clipboard FIRST
                 await navigator.clipboard.writeText(review.review);
                 setCopied(true);
+                
+                // Open window immediately after copy (must be synchronous for Safari)
+                const reviewLink = generateReviewLink(review.placeId);
+                window.open(reviewLink, '_blank');
 
                 // Update used review in background
                 updateUsedReview({
