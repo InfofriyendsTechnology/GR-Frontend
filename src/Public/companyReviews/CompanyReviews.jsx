@@ -39,20 +39,22 @@ const CompanyReviews = () => {
     const handleCopyReview = async (review) => {
         try {
             if (review.review) {
+                // Open window FIRST (before any async operations) for Safari compatibility
+                const reviewLink = generateReviewLink(review.placeId);
+                const newWindow = window.open(reviewLink, '_blank');
+                
+                // Then do async operations
                 await navigator.clipboard.writeText(review.review);
                 setCopied(true);
 
-                await updateUsedReview({
+                // Update used review in background
+                updateUsedReview({
                     id: review.id,
                     data: {
                         index: review.index,
                         review: review.review
                     }
-                }).unwrap();
-
-                // Open Google immediately without delay with generated link
-                const reviewLink = generateReviewLink(review.placeId);
-                window.open(reviewLink, '_blank');
+                }).unwrap().catch(err => console.error('Failed to update used review:', err));
 
                 // Reset copied state after a short delay
                 setTimeout(() => {
